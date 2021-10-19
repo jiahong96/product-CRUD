@@ -29,6 +29,10 @@
         {{ item.is_published ? 'Yes' : 'No' }}
       </template>
       <template v-slot:item.action="{ item }">
+        <product-button-show
+          :product="item"
+        />
+
         <product-button-edit
           :product="item"
           @updated="loadProducts"

@@ -33,6 +33,11 @@
           :product="item"
           @updated="loadProducts"
         />
+
+        <product-button-delete
+          :product="item"
+          @deleted="loadProducts"
+        />
       </template>
     </v-data-table>
   </v-card>

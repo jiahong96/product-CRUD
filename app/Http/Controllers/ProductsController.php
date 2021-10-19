@@ -23,7 +23,7 @@ class ProductsController extends Controller
             $query = $query->whereNameLike($search);
         }
 
-        return $query->paginate(10)->withQueryString();
+        return $query->orderBy('id', 'desc')->paginate(10)->withQueryString();
     }
 
     /**

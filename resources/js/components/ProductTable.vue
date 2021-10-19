@@ -14,10 +14,13 @@
     <v-data-table
       :headers="headers"
       :items="products"
-      :items-per-page="5"
+      :items-per-page="itemsPerPage"
       :page.sync="page"
       :server-items-length="totalProducts"
       :loading="loading"
+      :footer-props="{
+        disableItemsPerPage: true,
+      }"
       height="70vh"
       class="elevation-1"
     />
@@ -59,6 +62,7 @@
         loading: false,
         products: [],
         totalProducts: 0,
+        itemsPerPage: 10,
         page: 1,
       }
     },

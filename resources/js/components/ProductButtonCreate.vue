@@ -151,6 +151,7 @@
           .then(response => {
             this.created()
           })
+          .catch(() => {})
           .then(() => { this.progressing = false })
       },
       created () {

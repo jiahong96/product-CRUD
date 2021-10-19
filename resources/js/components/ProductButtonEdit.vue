@@ -156,6 +156,7 @@
           .then(response => {
             this.updated()
           })
+          .catch(() => {})
           .then(() => { this.progressing = false })
       },
       updated () {

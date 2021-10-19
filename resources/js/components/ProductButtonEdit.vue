@@ -111,22 +111,22 @@
         dialog: false,
         formValid: true,
         progressing: false,
-        name: this.product.name,
+        name: '',
         nameRules: [
           v => !!v || 'Name is required',
           v => (v && v.length <= 250) || 'Name must be less than 250 characters',
         ],
-        description: this.product.description,
+        description: '',
         descriptionRules: [
           v => !!v || 'Description is required',
           v => (v && v.length <= 10000) || 'Description must be less than 10000 characters',
         ],
-        price: this.product.price,
+        price: '',
         priceRules: [
           v => !!v || 'Price is required',
           v => (v && v > 0 && v <= 100000) || 'Price must be more than 0, less than 100k',
         ],
-        isPublished: this.product.is_published,
+        isPublished: 1,
       }
     },
     computed: {
@@ -143,6 +143,8 @@
       dialog (value) {
         if (value === false) {
           this.reset()
+        } else {
+          this.setValues()
         }
       },
     },
@@ -168,6 +170,12 @@
       },
       reset () {
         this.$refs.form.resetValidation()
+      },
+      setValues () {
+        this.name = this.product.name
+        this.price = this.product.price
+        this.description = this.product.description
+        this.isPublished = this.product.is_published
       },
     },
   }

@@ -10,6 +10,18 @@ class Product extends Model
 {
     use HasFactory;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var string[]
+     */
+    protected $fillable = [
+        'name',
+        'description',
+        'price',
+        'is_published',
+    ];
+
     public function scopeWhereNameLike(Builder $query, $value)
     {
         return $query->where('name', 'LIKE', "%{$value}%");

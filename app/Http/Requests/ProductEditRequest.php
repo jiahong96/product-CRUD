@@ -25,8 +25,8 @@ class ProductEditRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'description' => 'required|string',
-            'price' => 'required|numeric',
+            'description' => 'required|string|max:10000',
+            'price' => 'required|numeric|between:0,100000',
             'is_published' => 'required|boolean',
         ];
     }

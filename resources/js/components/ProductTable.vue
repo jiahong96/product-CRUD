@@ -10,6 +10,7 @@
         single-line
         hide-details
       />
+      <product-button-create @created="loadProducts" />
     </v-card-title>
     <v-data-table
       :headers="headers"

@@ -113,8 +113,8 @@
           .then(response => {
             this.products = response.data.data
             this.totalProducts = response.data.total
-            console.log(response.data)
           })
+          .catch(() => {})
           .then(() => { this.loading = false })
       },
     },

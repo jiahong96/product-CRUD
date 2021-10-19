@@ -24,7 +24,17 @@
       }"
       height="70vh"
       class="elevation-1"
-    />
+    >
+      <template v-slot:item.published="{ item }">
+        {{ item.is_published ? 'Yes' : 'No' }}
+      </template>
+      <template v-slot:item.action="{ item }">
+        <product-button-edit
+          :product="item"
+          @updated="loadProducts"
+        />
+      </template>
+    </v-data-table>
   </v-card>
 </template>
 
@@ -56,7 +66,12 @@
           {
             text: 'Published',
             sortable: false,
-            value: 'is_published',
+            value: 'published',
+          },
+          {
+            text: 'Actions',
+            sortable: false,
+            value: 'action',
           },
         ],
         search: '',

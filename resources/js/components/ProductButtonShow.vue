@@ -37,7 +37,7 @@
             <span>Name:</span>
           </v-col>
           <v-col cols="10">
-            <span>{{ product.name }}</span>
+            <span>{{ latestProduct.name }}</span>
           </v-col>
         </v-row>
 
@@ -46,7 +46,7 @@
             <span>Price:</span>
           </v-col>
           <v-col cols="10">
-            <span> RM {{ product.price }}</span>
+            <span> RM {{ latestProduct.price }}</span>
           </v-col>
         </v-row>
 
@@ -55,7 +55,7 @@
             <span>Details:</span>
           </v-col>
           <v-col cols="10">
-            <span>{{ product.description }}</span>
+            <span>{{ latestProduct.description }}</span>
           </v-col>
         </v-row>
 
@@ -64,7 +64,7 @@
             <span>Publish:</span>
           </v-col>
           <v-col cols="10">
-            <span>{{ product.is_published ? 'Yes' : 'No' }}</span>
+            <span>{{ latestProduct.is_published ? 'Yes' : 'No' }}</span>
           </v-col>
         </v-row>
       </v-container>
@@ -83,7 +83,26 @@
     data () {
       return {
         dialog: false,
+        loading: false,
+        latestProduct: {},
       }
+    },
+    watch: {
+      dialog (value) {
+        if (value === true) {
+          this.loadProduct()
+        }
+      },
+    },
+    methods: {
+      loadProduct () {
+        axios.get(`/api/products/${this.product.id}`)
+          .then(response => {
+            this.latestProduct = response.data
+          })
+          .catch(() => {})
+          .then(() => { this.loading = false })
+      },
     },
   }
 </script>
